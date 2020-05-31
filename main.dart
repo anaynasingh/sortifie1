@@ -1,95 +1,162 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+void main(List<String>args) {
+  runApp(new MaterialApp(
+    home : MyApp(),
+  ));
+}
+class MyApp extends StatefulWidget{
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Calendar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
-    );
-  }
+  _MyAppState createState()=> _MyAppState();
+
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  CalendarController _controller;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _controller = CalendarController();
-  }
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Calendar'),
+      appBar:new AppBar(
+        title: Center(
+          child: Text("Sortifie"),
+           
+          ),
+          
+        backgroundColor: Colors.lightBlueAccent,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: Colors.lightBlueAccent[200],
+
+      drawer: new Drawer(
+        child:ListView(
           children: <Widget>[
-            TableCalendar(
-              initialCalendarFormat: CalendarFormat.week,
-              calendarStyle: CalendarStyle(
-                  todayColor: Colors.orange,
-                  selectedColor: Theme.of(context).primaryColor,
-                  todayStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.white)),
-              headerStyle: HeaderStyle(
-                centerHeaderTitle: true,
-                formatButtonDecoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                formatButtonTextStyle: TextStyle(color: Colors.white),
-                formatButtonShowsNext: false,
-              ),
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              onDaySelected: (date, events) {
-                print(date.toIso8601String());
-              },
-              builders: CalendarBuilders(
-                selectedDayBuilder: (context, date, events) => Container(
-                    margin: const EdgeInsets.all(4.0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.white),
-                    )),
-                todayDayBuilder: (context, date, events) => Container(
-                    margin: const EdgeInsets.all(4.0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.orange,
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Text(
-                      date.day.toString(),
-                      style: TextStyle(color: Colors.white),
-                    )),
-              ),
-              calendarController: _controller,
-            )
+            UserAccountsDrawerHeader(
+              accountName: new Text("Full Name", style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),),
+              accountEmail: new Text("name@gmail.com"),
+              
+              decoration: new BoxDecoration( color: Colors.blue)
+
+            ),
+            ListTile(
+              leading: Icon(Icons.apps),
+              title: Text("Homepage"),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("Profile"),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Settings"),
+            ),
+            ListTile(
+              leading: Icon(Icons.vpn_key),
+              title: Text("Log Out"),
+            ),
+            
+          
           ],
-        ),
+        ) ,
       ),
+
+     body: Container(
+      padding: EdgeInsets.all(30.0),
+      child: GridView.count(
+        crossAxisCount: 2,
+        children: <Widget>[
+          Card(
+            margin:EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap:(){},
+              splashColor: Colors.green[200],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.book, size: 70.0),
+                    Text("Subjects", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),)
+            ),
+          ),
+                   Card(
+            margin:EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap:(){},
+              splashColor: Colors.green[200],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.calendar_today, size: 70.0),
+                    Text("Calendar", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),)
+            ),
+          ),
+                   Card(
+            margin:EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap:(){},
+              splashColor: Colors.green[200],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.table_chart, size: 70.0),
+                    Text("Timetable", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),)
+            ),
+          ),
+                   Card(
+            margin:EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap:(){},
+              splashColor: Colors.green[200],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.person_outline, size: 70.0),
+                    Text("Attendance", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),)
+            ),
+          ),
+                   Card(
+            margin:EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap:(){},
+              splashColor: Colors.green[200],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.signal_wifi_4_bar, size: 70.0),
+                    Text("Speed Test", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),)
+            ),
+          ),
+                   Card(
+            margin:EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap:(){},
+              splashColor: Colors.green[200],
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(Icons.add, size: 70.0),
+                    Text("", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),)
+            ),
+          ),
+        ],
+      )
+    )
     );
   }
-}
+  }
